@@ -22,5 +22,24 @@ class Membership extends Model
     {
         return $this->hasMany(Invoice::class);
     }
-    
+
+    public function paymentsMade()
+    {
+        return $this->hasMany(Group_payment::class, 'payer_membership_id');
+    }
+
+    public function paymentsReceived()
+    {
+        return $this->hasMany(Group_payment::class, 'receiver_membership_id');
+    }
+
+    public function invoicePayments()
+    {
+        return $this->hasMany(Payment::class, 'payer_membership_id');
+    }
+
+    public function invoiceReceipts()
+    {
+        return $this->hasMany(Payment::class, 'receiver_membership_id');
+    }
 }

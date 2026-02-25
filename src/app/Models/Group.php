@@ -16,5 +16,9 @@ class Group extends Model
     {
         return $this->hasMany(Category::class);
     }
-    
+
+    public function groupPayments()
+    {
+        return $this->hasMany(Group_payment::class);
+    }
 }

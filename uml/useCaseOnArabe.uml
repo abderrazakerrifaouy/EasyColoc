@@ -1,0 +1,73 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor "زائر" as Guest
+actor "عضو (Member)" as Member
+actor "مالك (Owner)" as Owner
+actor "مدير عام (Global Admin)" as Admin
+
+rectangle EasyColoc {
+  :التسجيل: as Register
+  :تسجيل الدخول: as Login
+  
+  :إدارة الملف الشخصي: as ManageProfile
+  :الانضمام إلى سكن عبر دعوة: as JoinByToken
+  :مشاهدة الأعضاء وأدوارهم: as ViewMembers
+  :مشاهدة سمعة الأعضاء: as ViewReputation
+  :إضافة مصروف: as AddExpense
+  :حذف مصروف: as DeleteExpense
+  :عرض سجل المصاريف: as ViewExpenses
+  :تصفية المصاريف حسب الشهر: as FilterExpenses
+  :عرض الرصيد الشخصي: as ViewBalance
+  :عرض \"من يدين لمن\": as ViewDebts
+  :تعليم الدفع كـ \"تم الدفع\": as MarkPaid
+  :مغادرة السكن: as LeaveHome
+  
+  :إنشاء سكن مشترك: as CreateHome
+  :دعوة عضو عبر البريد الإلكتروني + Token: as InviteMember
+  :إزالة عضو: as RemoveMember
+  :إدارة الفئات: as ManageCategories
+  :إلغاء السكن المشترك: as DeleteHome
+  
+  :عرض الإحصائيات العامة: as ViewStats
+  :حظر مستخدم: as BlockUser
+  :إلغاء حظر مستخدم: as UnblockUser
+  
+  
+  
+}
+
+Guest --> Register
+Guest --> Login
+
+Member --> ManageProfile
+Member --> JoinByToken
+Member --> ViewMembers
+Member --> ViewReputation
+Member --> AddExpense
+Member --> DeleteExpense
+Member --> ViewExpenses
+Member --> FilterExpenses
+Member --> ViewBalance
+Member --> ViewDebts
+Member --> MarkPaid
+Member --> LeaveHome
+
+Owner --> CreateHome
+Owner --> InviteMember
+Owner --> RemoveMember
+Owner --> ManageCategories
+Owner --> DeleteHome
+
+Admin --> ViewStats
+Admin --> BlockUser
+Admin --> UnblockUser
+
+Admin -u-|> Owner
+Owner -u-|> Member
+
+
+
+
+
+@enduml

@@ -1,0 +1,67 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Visiteur" as Guest
+actor "Membre" as Member
+actor "Propriétaire" as Owner
+actor "Administrateur général" as Admin
+
+rectangle EasyColoc {
+  :Inscription: as Register
+  :Connexion: as Login
+  
+  :Gérer le profil: as ManageProfile
+  :Rejoindre un logement via invitation: as JoinByToken
+  :Voir les membres et leurs rôles: as ViewMembers
+  :Voir la réputation des membres: as ViewReputation
+  :Ajouter une dépense: as AddExpense
+  :Supprimer une dépense: as DeleteExpense
+  :Voir l’historique des dépenses: as ViewExpenses
+  :Filtrer les dépenses par mois: as FilterExpenses
+  :Voir le solde personnel: as ViewBalance
+  :Voir "qui doit à qui": as ViewDebts
+  :Marquer le paiement comme "payé": as MarkPaid
+  :Quitter le logement: as LeaveHome
+  
+  :Créer un logement partagé: as CreateHome
+  :Inviter un membre par e-mail + Token: as InviteMember
+  :Retirer un membre: as RemoveMember
+  :Gérer les catégories: as ManageCategories
+  :Supprimer le logement partagé: as DeleteHome
+  
+  :Voir les statistiques générales: as ViewStats
+  :Bloquer un utilisateur: as BlockUser
+  :Débloquer un utilisateur: as UnblockUser
+}
+
+Guest --> Register
+Guest --> Login
+
+Member --> ManageProfile
+Member --> JoinByToken
+Member --> ViewMembers
+Member --> ViewReputation
+Member --> AddExpense
+Member --> DeleteExpense
+Member --> ViewExpenses
+Member --> FilterExpenses
+Member --> ViewBalance
+Member --> ViewDebts
+Member --> MarkPaid
+Member --> LeaveHome
+
+Owner --> CreateHome
+Owner --> InviteMember
+Owner --> RemoveMember
+Owner --> ManageCategories
+Owner --> DeleteHome
+
+Admin --> ViewStats
+Admin --> BlockUser
+Admin --> UnblockUser
+
+Admin -u-|> Owner
+Owner -u-|> Member
+
+@enduml

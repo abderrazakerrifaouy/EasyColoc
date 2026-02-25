@@ -1,0 +1,89 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+' =========================
+' ENUM
+' =========================
+enum Role {
+  USER
+  ADMIN
+}
+
+' =========================
+' CLASSES
+' =========================
+
+class User {
+  - id : int
+  - name : string
+  - email : string
+  - password : string
+  - role : Role
+  - reputation : double
+}
+
+class Group {
+  - id : int
+  - name : string
+  + generateInvitationToken() : string
+}
+
+class Membership {
+  - id : int
+  - role : string
+  - isQuit : boolean
+  - user_id : int
+  - group_id : int
+}
+
+class Category {
+  - id : int
+  - title : string
+  - group_id : int
+}
+
+class Invoice {
+  - id : int
+  - title : string
+  - amount : double
+  - created_at : date
+  - category_id : int
+  - membership_id : int
+}
+
+class Payment {
+  - id : int
+  - amount : double
+  - payer_membership_id : int
+  - receiver_membership_id : int
+}
+
+class GroupPayment {
+  - id : int
+  - payment_id : int
+  - invoice_id : int
+  - total_amount : double
+}
+
+' =========================
+' RELATIONS (Same as your diagram)
+' =========================
+
+User "1" -- "*" Membership
+Group "1" -- "*" Membership
+
+Group "1" -- "*" Category
+Category "1" -- "*" Invoice
+
+Membership "1" -- "*" Invoice
+
+Membership "1" -- "*" Payment : payer
+Membership "1" -- "*" Payment : receiver
+
+Group "1" -- "*" GroupPayment
+Invoice "1" -- "*" GroupPayment
+Payment "1" -- "*" GroupPayment
+
+User --> Role
+
+@enduml

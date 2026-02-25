@@ -1,0 +1,80 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+' =========================
+' ENUM
+' =========================
+enum Role {
+  USER
+  ADMIN
+}
+
+' =========================
+' CLASSES
+' =========================
+
+class User {
+  - id : int
+  - name : string
+  - email : string
+  - password : string
+  - reputation : double
+  - role : Role
+}
+
+class Group {
+  - id : int
+  - name : string
+  + generateInvitationToken() : string
+}
+
+class Membership {
+  - id : int
+  - role : string
+  - isQuit : boolean
+}
+
+class Category {
+  - id : int
+  - title : string
+}
+
+class Invoice {
+  - id : int
+  - title : string
+  - amount : double
+  - createdAt : date
+}
+
+class Payment {
+  - id : int
+  - amount : double
+}
+
+class GroupPayment {
+  - id : int
+  - totalAmount : double
+}
+
+' =========================
+' RELATIONS
+' =========================
+
+User "1" -- "*" Membership
+Group "1" -- "*" Membership
+
+Group "1" -- "*" Category
+Category "1" -- "*" Invoice
+
+Membership "1" -- "*" Invoice
+
+Membership "1" -- "*" Payment : payer
+Membership "1" -- "*" Payment : receiver
+
+Group "1" -- "*" GroupPayment
+Invoice "1" -- "*" GroupPayment
+Payment "1" -- "*" GroupPayment
+
+User --> Role
+
+@enduml

@@ -7,9 +7,9 @@
 <div class="space-y-8">
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white p-6 rounded-3xl border-b-4 border-emerald-500 shadow-sm">
+        <div class="bg-white p-6 rounded-3xl border-b-4 shadow-sm {{ $solde > 0 ? 'border-emerald-500' : 'border-rose-500' }}">
             <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-1">Mon Solde Perso</p>
-            <h3 class="text-2xl font-black text-emerald-600">+12.50 €</h3>
+                    <h3 class="text-2xl font-black {{ $solde > 0 ? 'text-emerald-600' : 'text-rose-600' }}">{{ $solde }} €</h3>
             <p class="text-[10px] text-slate-400 mt-1 italic">Calculé selon vos factures</p>
         </div>
         <div class="bg-slate-900 p-6 rounded-3xl shadow-xl">

@@ -15,12 +15,22 @@
             <div class="p-6 text-2xl font-bold border-b border-slate-800">
                 COLOC<span class="text-indigo-400">APP</span>
             </div>
-            <nav class="flex-1 p-4 space-y-2">
-                <a href="/dashboard"
-                    class="block p-3 rounded-lg hover:bg-slate-800 {{ request()->is('dashboard') ? 'bg-indigo-100' : '' }}">Dashboard</a>
-                <a href="/expenses" class="block p-3 rounded-lg hover:bg-slate-800">Dépenses</a>
-                <a href="/colocation" class="block p-3 rounded-lg hover:bg-slate-800">Ma Coloc</a>
-            </nav>
+            @if (Auth::user()->memberships()->where('is_approved', false)->exists())
+                <nav class="flex-1 p-4 space-y-2">
+                    <a href="/dashboard"
+                        class="block p-3 rounded-lg hover:bg-slate-800 {{ request()->is('dashboard/user') || request()->is('dashboard/owner') ? 'bg-indigo-100' : '' }}">Dashboard</a>
+                    <a href="/expenses"
+                        class="block p-3 rounded-lg hover:bg-slate-800 {{ request()->is('expenses') ? 'bg-indigo-100' : '' }}">Dépenses</a>
+                    <a href="/colocation"
+                        class="block p-3 rounded-lg hover:bg-slate-800 {{ request()->is('colocation') ? 'bg-indigo-100' : '' }}">Ma
+                        Coloc</a>
+                </nav>
+            @else
+                <span
+                    class="hidden md:block text-[10px] font-black text-slate-300 uppercase tracking-widest border border-slate-100 px-3 py-1 rounded-full">
+                    Mode Setup
+                </span>
+            @endif
         </aside>
 
         <div class="flex-1 flex flex-col overflow-hidden">
@@ -41,8 +51,15 @@
                 @yield('content')
             </main>
         </div>
+        @if (session('success'))
+            <div  id="prompte" class="absolute bottom-4 right-4 bg-emerald-500 text-white px-4 py-2 rounded-lg shadow-lg">
+                {{ session('success') }}
+            </div>
+        @endif
     </div>
-
+    <script>
+    
+    </script>
     @stack('scripts')
 </body>
 

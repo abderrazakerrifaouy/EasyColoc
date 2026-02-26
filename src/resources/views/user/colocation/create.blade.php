@@ -35,7 +35,7 @@
             <div class="space-y-2">
                 <label for="category" class="block text-sm font-black text-slate-800 uppercase tracking-widest">Première Catégorie</label>
                 <div class="relative">
-                    <input type="text" name="category" id="category" required
+                    <input type="text" name="PrimaryCategory" id="category" required
                         class="block w-full px-6 py-5 rounded-2xl border-2 border-slate-100 bg-slate-50 focus:bg-white focus:border-indigo-500 transition-all font-semibold text-slate-700"
                         placeholder="Ex: Courses alimentaires, Loyer, Internet...">
                     <span class="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-bold uppercase tracking-tighter bg-white px-2 py-1 rounded-md border border-slate-100">Requis</span>

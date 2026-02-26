@@ -18,7 +18,15 @@ class verified
     {
         $user = Auth::user();
         if ($user->role == 'user') {
-            return $next($request);
+            $membership = $user->memberships()->where('is_approved', false)->first();
+            if ($membership && $membership->role == 'owner') {
+                return redirect()->route('dashboardOwner');
+            }
+            elseif ($membership && $membership->role == 'member') {
+                return redirect()->route('dashboardUser');
+            } else {
+                return $next($request);
+            }
         } else {
             return redirect()->route('dashboardAdmin');
         }

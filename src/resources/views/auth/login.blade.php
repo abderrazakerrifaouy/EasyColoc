@@ -15,8 +15,7 @@
             @endforeach
         </div>
     @endif
-
-    <form action="{{ route('login') }}" method="POST" class="space-y-5">
+    <form action="{{ route('login.submit') }}" method="POST" class="space-y-5">
         @csrf
 
         <div>

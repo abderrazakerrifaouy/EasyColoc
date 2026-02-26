@@ -12,7 +12,8 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
             'group_id' => 'required|exists:groups,id',
         ]);
-        Category::created(
+
+        Category::create(
             [
                 'name' => $request->name,
                 'group_id' => $request->group_id,

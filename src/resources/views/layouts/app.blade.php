@@ -58,7 +58,13 @@
         @endif
     </div>
     <script>
-    
+        // Masquer le prompte après 3 secondes
+        setTimeout(() => {
+            const prompte = document.getElementById('prompte');
+            if (prompte) {
+                prompte.style.display = 'none';
+            }
+        }, 3000);
     </script>
     @stack('scripts')
 </body>
